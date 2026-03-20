@@ -1,13 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  FileText, 
-  Upload, 
-  Search, 
-  CheckCircle2, 
-  AlertCircle, 
-  XCircle, 
-  TrendingUp, 
+import {
+  FileText,
+  Upload,
+  Search,
+  CheckCircle2,
+  AlertCircle,
+  XCircle,
+  TrendingUp,
   Star,
   Users,
   ChevronRight,
@@ -24,7 +24,7 @@ function cn(...inputs) {
 const screenResume = (jd, resume) => {
   const jdLower = jd.toLowerCase();
   const resumeLower = resume.content.toLowerCase();
-  
+
   // A simple keywords-based logic for this MVP
   const keywords = jdLower.split(/[\s,.\n]+/).filter(w => w.length > 3);
   let matchCount = 0;
@@ -109,7 +109,7 @@ export default function App() {
       <header className="flex justify-between items-center bg-slate-900/40 p-6 rounded-3xl border border-white/5 backdrop-blur-sm">
         <div className="flex items-center gap-3">
           <div className="bg-primary/20 p-3 rounded-xl">
-             <Star className="w-6 h-6 text-primary fill-primary/20" />
+            <Star className="w-6 h-6 text-primary fill-primary/20" />
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">AI Resume Screener</h1>
@@ -126,52 +126,52 @@ export default function App() {
         {/* Left Column: Inputs */}
         <div className="lg:col-span-5 space-y-6">
           <Card className="space-y-4">
-             <div className="flex items-center gap-2 mb-2">
-               <Briefcase className="w-5 h-5 text-primary" />
-               <h2 className="text-lg font-semibold">Job Description</h2>
-             </div>
-             <textarea 
-               className="w-full h-40 bg-background border border-border rounded-xl p-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-muted-foreground"
-               placeholder="Paste the Job Description here (e.g., We are looking for a Data Analyst with experience in SQL...)"
-               value={jd}
-               onChange={(e) => setJd(e.target.value)}
-             />
+            <div className="flex items-center gap-2 mb-2">
+              <Briefcase className="w-5 h-5 text-primary" />
+              <h2 className="text-lg font-semibold">Job Description</h2>
+            </div>
+            <textarea
+              className="w-full h-40 bg-background border border-border rounded-xl p-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-muted-foreground"
+              placeholder="Paste the Job Description here (e.g., We are looking for a Data Analyst with experience in SQL...)"
+              value={jd}
+              onChange={(e) => setJd(e.target.value)}
+            />
           </Card>
 
           <Card className="space-y-4">
-             <div className="flex items-center gap-2 mb-2">
-               <Upload className="w-5 h-5 text-primary" />
-               <h2 className="text-lg font-semibold">Upload Resumes</h2>
-             </div>
-             <div className="border-2 border-dashed border-border rounded-xl p-8 text-center space-y-4 hover:border-primary/50 transition-colors cursor-pointer relative group">
-                <input 
-                  type="file" 
-                  multiple 
-                  className="absolute inset-0 opacity-0 cursor-pointer" 
-                  onChange={handleFileUpload}
-                />
-                <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                  <Upload className="w-6 h-6 text-primary" />
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  <span className="text-primary font-medium">Click to upload</span> or drag and drop
-                  <br /> PDFs, Word docs (Simulated content)
-                </div>
-             </div>
-             
-             {resumes.length > 0 && (
-               <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
-                 {resumes.map((f, i) => (
-                   <div key={i} className="flex justify-between items-center text-xs bg-slate-800/50 p-2 rounded-lg border border-white/5">
-                     <span className="truncate max-w-[200px] flex items-center gap-2"><FileText className="w-3 h-3" /> {f.name}</span>
-                     <button className="text-muted-foreground hover:text-rose-400" onClick={() => setResumes(resumes.filter(r => r.id !== f.id))}><XCircle className="w-4 h-4" /></button>
-                   </div>
-                 ))}
-               </div>
-             )}
+            <div className="flex items-center gap-2 mb-2">
+              <Upload className="w-5 h-5 text-primary" />
+              <h2 className="text-lg font-semibold">Upload Resumes</h2>
+            </div>
+            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center space-y-4 hover:border-primary/50 transition-colors cursor-pointer relative group">
+              <input
+                type="file"
+                multiple
+                className="absolute inset-0 opacity-0 cursor-pointer"
+                onChange={handleFileUpload}
+              />
+              <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                <Upload className="w-6 h-6 text-primary" />
+              </div>
+              <div className="text-sm text-muted-foreground">
+                <span className="text-primary font-medium">Click to upload</span> or drag and drop
+                <br /> PDFs, Word docs (Simulated content)
+              </div>
+            </div>
+
+            {resumes.length > 0 && (
+              <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
+                {resumes.map((f, i) => (
+                  <div key={i} className="flex justify-between items-center text-xs bg-slate-800/50 p-2 rounded-lg border border-white/5">
+                    <span className="truncate max-w-[200px] flex items-center gap-2"><FileText className="w-3 h-3" /> {f.name}</span>
+                    <button className="text-muted-foreground hover:text-rose-400" onClick={() => setResumes(resumes.filter(r => r.id !== f.id))}><XCircle className="w-4 h-4" /></button>
+                  </div>
+                ))}
+              </div>
+            )}
           </Card>
 
-          <button 
+          <button
             disabled={!jd || resumes.length === 0 || isScreening}
             onClick={startScreening}
             className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-4 rounded-2xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
@@ -194,7 +194,7 @@ export default function App() {
         <div className="lg:col-span-7">
           <AnimatePresence mode="wait">
             {results.length > 0 ? (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -218,61 +218,61 @@ export default function App() {
                     >
                       <Card className="hover:border-primary/30 group">
                         <div className="flex flex-col md:flex-row gap-6">
-                           {/* Score Circle */}
-                           <div className="relative w-16 h-16 flex-shrink-0">
-                              <svg className="w-full h-full transform -rotate-90">
-                                <circle
-                                  cx="32" cy="32" r="28"
-                                  stroke="currentColor"
-                                  strokeWidth="4"
-                                  fill="transparent"
-                                  className="text-slate-800"
-                                />
-                                <circle
-                                  cx="32" cy="32" r="28"
-                                  stroke="currentColor"
-                                  strokeWidth="4"
-                                  fill="transparent"
-                                  strokeDasharray={175.9}
-                                  strokeDashoffset={175.9 - (175.9 * res.score) / 100}
-                                  className="text-primary"
-                                />
-                              </svg>
-                              <div className="absolute inset-0 flex items-center justify-center font-bold">
-                                {res.score}
-                              </div>
-                           </div>
+                          {/* Score Circle */}
+                          <div className="relative w-16 h-16 flex-shrink-0">
+                            <svg className="w-full h-full transform -rotate-90">
+                              <circle
+                                cx="32" cy="32" r="28"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                                fill="transparent"
+                                className="text-slate-800"
+                              />
+                              <circle
+                                cx="32" cy="32" r="28"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                                fill="transparent"
+                                strokeDasharray={175.9}
+                                strokeDashoffset={175.9 - (175.9 * res.score) / 100}
+                                className="text-primary"
+                              />
+                            </svg>
+                            <div className="absolute inset-0 flex items-center justify-center font-bold">
+                              {res.score}
+                            </div>
+                          </div>
 
-                           <div className="flex-1 space-y-4">
-                              <div className="flex justify-between items-start">
-                                <div>
-                                  <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{res.name.split('.')[0]}</h3>
-                                  <Badge variant={res.recommendation}>{res.recommendation}</Badge>
-                                </div>
-                                <div className="text-xs text-muted-foreground flex items-center gap-1 font-mono uppercase bg-slate-800 px-2 py-1 rounded">
-                                  Rank #{idx + 1}
-                                </div>
+                          <div className="flex-1 space-y-4">
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{res.name.split('.')[0]}</h3>
+                                <Badge variant={res.recommendation}>{res.recommendation}</Badge>
                               </div>
+                              <div className="text-xs text-muted-foreground flex items-center gap-1 font-mono uppercase bg-slate-800 px-2 py-1 rounded">
+                                Rank #{idx + 1}
+                              </div>
+                            </div>
 
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div className="bg-emerald-500/5 p-3 rounded-xl border border-emerald-500/10 h-full">
-                                  <div className="flex items-center gap-2 text-emerald-400 font-semibold mb-2">
-                                    <CheckCircle2 className="w-4 h-4" /> Strengths
-                                  </div>
-                                  <ul className="space-y-1 text-slate-300">
-                                    {res.strengths.map((s, i) => <li key={i} className="flex gap-2 items-start"><ChevronRight className="w-3 h-3 mt-1 flex-shrink-0 text-emerald-500/50" /> {s}</li>)}
-                                  </ul>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                              <div className="bg-emerald-500/5 p-3 rounded-xl border border-emerald-500/10 h-full">
+                                <div className="flex items-center gap-2 text-emerald-400 font-semibold mb-2">
+                                  <CheckCircle2 className="w-4 h-4" /> Strengths
                                 </div>
-                                <div className="bg-rose-500/5 p-3 rounded-xl border border-rose-500/10 h-full">
-                                  <div className="flex items-center gap-2 text-rose-400 font-semibold mb-2">
-                                    <AlertCircle className="w-4 h-4" /> Gaps
-                                  </div>
-                                  <ul className="space-y-1 text-slate-300">
-                                    {res.gaps.map((g, i) => <li key={i} className="flex gap-2 items-start"><ChevronRight className="w-3 h-3 mt-1 flex-shrink-0 text-rose-500/50" /> {g}</li>)}
-                                  </ul>
-                                </div>
+                                <ul className="space-y-1 text-slate-300">
+                                  {res.strengths.map((s, i) => <li key={i} className="flex gap-2 items-start"><ChevronRight className="w-3 h-3 mt-1 flex-shrink-0 text-emerald-500/50" /> {s}</li>)}
+                                </ul>
                               </div>
-                           </div>
+                              <div className="bg-rose-500/5 p-3 rounded-xl border border-rose-500/10 h-full">
+                                <div className="flex items-center gap-2 text-rose-400 font-semibold mb-2">
+                                  <AlertCircle className="w-4 h-4" /> Gaps
+                                </div>
+                                <ul className="space-y-1 text-slate-300">
+                                  {res.gaps.map((g, i) => <li key={i} className="flex gap-2 items-start"><ChevronRight className="w-3 h-3 mt-1 flex-shrink-0 text-rose-500/50" /> {g}</li>)}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </Card>
                     </motion.div>
